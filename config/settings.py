@@ -120,6 +120,7 @@ USE_TZ = True
 # URL 경로를 프로젝트 경로와의 매핑
 STATIC_URL = "static/"
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

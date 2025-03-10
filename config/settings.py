@@ -54,7 +54,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# dev_3
+# dev_3 => 장고 디버그 툴바
 INTERNAL_IPS = [
     "127.0.0.1",
 ]

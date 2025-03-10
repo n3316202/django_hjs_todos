@@ -1,0 +1,33 @@
+<!--dev_3--> 
+{% load static %}
+{% load django_bootstrap5%}
+<!-- dev_3 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<body>
+  <div class="container">
+    <h1>TODO 추가하기</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <form method="POST">
+                {% comment %} form.as_p는 폼의 각 필드를 p 태그 안에서 레이블과 텍스트로 배치한다 {% endcomment %}
+                {% csrf_token %} {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">등록</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+</body>
+</html>

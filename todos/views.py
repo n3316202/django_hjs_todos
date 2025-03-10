@@ -27,10 +27,12 @@ def todo_post(request):
 
     if request.method == "POST":
         form = TodoForm(request.POST)
+        
         if form.is_valid():
             todo = form.save(commit=False)
             todo.save()
             return redirect("todo_list")
+        
     else:
         form = TodoForm()
 

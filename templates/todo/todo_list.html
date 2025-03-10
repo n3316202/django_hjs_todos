@@ -1,0 +1,51 @@
+{% load static %}
+{% load django_bootstrap5%}
+<!-- dev_3 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<body>
+  <div class="container">
+    <h1>Done 목록</h1>
+    <p>
+
+      <a href="{% url 'todo_list' %}" class="btn btn-primary">홈으로</a>
+    </p>
+    <ul class="list-group">
+      {% comment %} 
+        {% for done in dones %}
+          <li class="list-group-item">
+            <a href="{% url 'todo_detail' pk=done.pk %}">{{ done.title }}</a>
+            {% if done.important %}
+              <span class="badge badge-danger">!</span>
+            {% endif %}
+          </li>
+        {% endfor %} 
+      {% endcomment %}
+
+    
+      {% for todo  in todos  %}
+        {{ todo.title }}<br>
+        {{ todo.description }}<br>        
+        {{ todo.created }}<br>        
+        {{ todo.important }}<br>     
+        <br>
+      {% endfor %}
+
+      {% lorem %}    <!-- 👈 lorem 생성 -->
+      {% lorem 3 p%} <!-- 👈 lorem 문장(p)을 3개 생성 -->
+      {% lorem 2 w random %} {% lorem 5 w random %} <!-- 👈 lorem 단어(w)을 5개 랜덤 생성 -->
+        
+        
+      
+
+    </ul>
+  </div>
+</body>
+</html>

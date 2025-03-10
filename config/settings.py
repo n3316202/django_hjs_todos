@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "todos",  # dev_1
+    "django_bootstrap5", #dev_3
 ]
 
 # 스프링 에서는 filter 기능

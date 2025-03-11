@@ -11,4 +11,6 @@ urlpatterns = [
     # http://127.0.0.1:8000/todo?number=1&name=ghldkf
     # http://127.0.0.1:8000/todo/{1}/ + GET, POST, PUT, DELETE, OPTION
     path("<int:pk>", views.todo_detail, name="todo_detail"),  # dev_4
+    #http://127.0.0.1:8000/todo/1/edit/
+    path("<int:pk>/edit", views.todo_edit, name="todo_edit"),  # dev_5
 ]

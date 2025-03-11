@@ -44,3 +44,20 @@ def todo_post(request):
 def todo_detail(request, pk):
     todo = Todo.objects.get(id=pk)  # filter는 1개이상,get=1개만 꺼내옴
     return render(request, "todo/todo_detail.html", {"todo": todo})
+
+
+# dev_5
+def todo_edit(request, pk):
+    todo = Todo.objects.get(id=pk)
+
+    if request.method == "POST":
+        form = TodoForm(request.POST, instance=todo)
+        if form.is_valid():
+            # SQL 실행시킨 상태이지만 = 메모리에만 올려놓고 영구저장(commit)은 안한상태
+            todo = form.save(commit=False)
+            todo.save()
+            return redirect("todo_list")
+    else:
+        form = TodoForm(instance=todo)  # 레코드,튜플 #
+
+    return render(request, "todo/todo_post.html", {"form": form})

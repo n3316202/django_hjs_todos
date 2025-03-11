@@ -19,6 +19,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-body">
+              {% comment %} <form>의 action이 비어있으므로, 현재 페이지의 URL이 기본적으로 사용됨. {% endcomment %}
               <form method="POST">
                 <!-- form.as_p는 폼의 각 필드를 p 태그 안에서 레이블과 텍스트로 배치한다 --> 
                 {% csrf_token %} {{ form.as_p }}

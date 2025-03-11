@@ -15,11 +15,11 @@
       <a href="" class="btn btn-primary" style="float:right">완료한 TODO 목록</a>
     </p>
     
-    <ul class="list-group">
-      
+    <ul class="list-group">      
       {% for todo  in todos %}
         <li class="list-group-item">
-          <a href="">{{ todo.title }}</a>          
+          <!--dev_4-->
+          <a href="{% url 'todo_detail' pk=todo.pk  %}">{{ todo.title }}</a>          
           {% if todo.important %}
             <span class="badge btn-danger">!</span>
           {% endif %}

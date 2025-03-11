@@ -1,0 +1,31 @@
+<!--dev_3--> 
+{% load static %}
+{% load django_bootstrap5%}
+<!-- dev_3 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<body>
+  <div class="container">
+    <h1>TODO 상세보기</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">제목:{{ todo.title }}</h3>
+              <p class="card-text">내용:{{ todo.description }}</p>
+              <a href="{% url 'todo_list' %}" class="btn btn-primary">목록</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+</body>
+</html>

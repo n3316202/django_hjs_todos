@@ -37,3 +37,10 @@ def todo_post(request):
         form = TodoForm()
 
     return render(request, "todo/todo_post.html", {"form": form})
+
+
+# http://127.0.0.1:8000/todo/{1}/ + GET, POST, PUT, DELETE, OPTION
+# path("<int:pk>", views.todo_detail, name="todo_detail"),  # dev_4
+def todo_detail(request, pk):
+    todo = Todo.objects.get(id=pk)  # filter는 1개이상,get=1개만 꺼내옴
+    return render(request, "todo/todo_detail.html", {"todo": todo})

@@ -7,7 +7,7 @@ from config import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("todos.urls")),  # dev_1
-]
+]   
 
 # dev_3
 if settings.DEBUG:

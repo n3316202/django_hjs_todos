@@ -71,4 +71,12 @@ def todo_done(request, pk):
     todo.save()
     return redirect("todo_list")
 
+
 # redirect 하고 forward 의 차이
+
+
+def done_list(request):
+    # select * from todos where complete=1
+    dones = Todo.objects.filter(complete=True)
+    print(dones)
+    return render(request, "todo/done_list.html", {"dones": dones})

@@ -18,7 +18,7 @@ def home(request):
 
 def todo_list(request):
     # select * from todos where complete=0
-    todos = Todo.objects.filter(complete=True)
+    todos = Todo.objects.filter(complete=False)
     print(todos)
     return render(request, "todo/todo_list.html", {"todos": todos})
 
@@ -27,12 +27,12 @@ def todo_post(request):
 
     if request.method == "POST":
         form = TodoForm(request.POST)
-        
+
         if form.is_valid():
             todo = form.save(commit=False)
             todo.save()
             return redirect("todo_list")
-        
+
     else:
         form = TodoForm()
 

@@ -61,3 +61,14 @@ def todo_edit(request, pk):
         form = TodoForm(instance=todo)  # 레코드,튜플,행 #
 
     return render(request, "todo/todo_post.html", {"form": form})
+
+
+def todo_done(request, pk):
+    todo = Todo.objects.get(id=pk)
+    todo.complete = True
+    # todo.title = "하하하"
+    # todo.description = "메롱"
+    todo.save()
+    return redirect("todo_list")
+
+# redirect 하고 forward 의 차이

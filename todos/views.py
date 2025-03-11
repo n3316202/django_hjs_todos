@@ -58,6 +58,6 @@ def todo_edit(request, pk):
             todo.save()
             return redirect("todo_list")
     else:
-        form = TodoForm(instance=todo)  # 레코드,튜플 #
+        form = TodoForm(instance=todo)  # 레코드,튜플,행 #
 
     return render(request, "todo/todo_post.html", {"form": form})

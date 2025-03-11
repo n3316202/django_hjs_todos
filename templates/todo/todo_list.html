@@ -19,7 +19,8 @@
       {% for todo  in todos %}
         <li class="list-group-item">
           <!--dev_4-->
-          <a href="{% url 'todo_detail' pk=todo.pk  %}">{{ todo.title }}</a>          
+          {% comment %} path("/<int:pk>", views.todo_detail, name="todo_detail"),  {% endcomment %}
+          <a href="{% url 'todo_detail' pk=todo.id  %}">{{ todo.title }}</a>          
           {% if todo.important %}
             <span class="badge btn-danger">!</span>
           {% endif %}

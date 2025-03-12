@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "todos",  # dev_1
     "django_bootstrap5",  # dev_3
     "debug_toolbar",  # dev_3
+    "rest_framework",
+    "django_filters",
 ]
 
 # 스프링 에서는 filter 기능

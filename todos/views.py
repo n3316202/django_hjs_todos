@@ -17,20 +17,26 @@ from rest_framework import status
 
 # dev_7
 # DRF 방식
-
 # @api_view(["GET"])
 # def todo_drf(request):
 #    return Response({"message": "Hello World!"})
 
+# API => 함수 => json,xml(데이타) 가져오는(호출) 함수
+
 
 class TodoAPIView(APIView):
     def get(self, request):
+
         todos = Todo.objects.all()
 
+        print(todos)
         # querySet 리턴일 경우 many=True 설정
         serializer = TodoDRFSerializer(todos, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        pass
 
 
 # def todo_drf(request):

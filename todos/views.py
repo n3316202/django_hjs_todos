@@ -4,7 +4,37 @@ from django.shortcuts import redirect, render
 from todos.forms import TodoForm
 from todos.models import Todo
 
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from django.http import JsonResponse
+from rest_framework.views import APIView
+
+from todos.serializers import TodoDRFSerializer
+from rest_framework import status
+
 # Create your views here.
+
+
+# dev_7
+# DRF 방식
+
+# @api_view(["GET"])
+# def todo_drf(request):
+#    return Response({"message": "Hello World!"})
+
+
+class TodoAPIView(APIView):
+    def get(self, request):
+        todos = Todo.objects.all()
+
+        # querySet 리턴일 경우 many=True 설정
+        serializer = TodoDRFSerializer(todos, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+# def todo_drf(request):
+#    return JsonResponse({"message": "Hello World!"})
 
 
 # dev_1

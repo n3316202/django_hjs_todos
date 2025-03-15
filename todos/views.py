@@ -17,9 +17,9 @@ from rest_framework import status
 
 # dev_7
 # DRF 방식
-# @api_view(["GET"])
-# def todo_drf(request):
-#    return Response({"message": "Hello World!"})
+@api_view(["GET"])
+def todo_drf(request):
+   return Response({"message": "Hello World!"})
 
 # API => 함수 => json,xml(데이타) 가져오는(호출) 함수
 

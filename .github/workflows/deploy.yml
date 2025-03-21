@@ -1,7 +1,7 @@
 name: Deploy to EC2
 on: # 아래 job을 실행시킬 상황
   push:
-    branches: [ main ]
+    branches: [dev_10_distibute_2025-03-21]
   
 jobs:
 

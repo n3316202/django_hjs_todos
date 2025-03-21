@@ -1,0 +1,65 @@
+# pull official base image
+FROM python:3.12.0-alpine as builder
+
+# set work directory
+WORKDIR /usr/src/app
+
+# set environment variables
+# Python이 .pyc 캐시 파일을 생성하지 않도록 설정
+# PYTHONUNBUFFERED=1: 출력을 즉시 볼 수 있도록 버퍼링 비활성화
+ENV PYTHONDONTWRITEBYTECODE 1 
+ENV PYTHONUNBUFFERED 1
+
+RUN apk update
+RUN apk add postgresql-dev gcc python3 python3-dev musl-dev zlib-dev jpeg-dev  libc-dev libpcap-dev  linux-headers mariadb-dev build-base  && pip3 install mysqlclient
+
+# install dependencies
+COPY ./requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+
+# FINAL #
+#python:3.8.3-alpine은 Python 3.8.3을 포함한 Alpine Linux 기반의 경량 이미지를 의미함
+FROM python:3.12.0-alpine
+
+# create directory for the app user
+RUN mkdir -p /home/app
+
+# create the app user
+RUN addgroup -S app && adduser -S app -G app
+
+# create the appropriate directories
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/static
+RUN mkdir $APP_HOME/media
+WORKDIR $APP_HOME
+
+# install dependencies
+#libpq: PostgreSQL과 호환되도록 패키지 추가 (일반적으로 Django에서 사용)
+#apk add --virtual build-deps: 빌드에 필요한 gcc, python3-dev, musl-dev를 설치
+#mariadb-dev: MySQL 데이터베이스 연결을 위한 드라이버 설치
+#builder 단계에서 생성한 .whl 파일을 최종 이미지에 복사
+#pip install --no-cache /wheels/* → 휠을 사용하여 빠르게 패키지 설치
+#apk del build-deps → 빌드에만 필요한 패키지를 제거하여 컨테이너 크기 최적화
+RUN apk update && apk add libpq
+RUN apk update \
+    && apk add --virtual build-deps gcc python3-dev musl-dev \
+    && apk add --no-cache mariadb-dev
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirements.txt .
+RUN pip install mysqlclient
+RUN pip install --no-cache /wheels/*
+RUN apk del build-deps
+
+# copy entrypoint-prod.sh
+COPY ./config/docker/entrypoint.prod.sh $APP_HOME
+
+# copy project
+COPY . $APP_HOME
+
+# chown all the files to the app user
+RUN chown -R app:app $APP_HOME
+
+# change to the app user
+USER app

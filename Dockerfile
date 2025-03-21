@@ -5,7 +5,9 @@ FROM python:3.12.0-alpine
 WORKDIR /usr/src/app
 
 # set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
+# Python이 .pyc 캐시 파일을 생성하지 않도록 설정
+# PYTHONUNBUFFERED=1: 출력을 즉시 볼 수 있도록 버퍼링 비활성화
+ENV PYTHONDONTWRITEBYTECODE 1 
 ENV PYTHONUNBUFFERED 1
 
 RUN apk update

@@ -1,8 +1,6 @@
 # https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions#create-an-example-workflow
 name: using-python-version
-on:
-    push:
-        branches: [dev_10_distribute_2025-03-21]
+on: [push]
 
 jobs:
     build:

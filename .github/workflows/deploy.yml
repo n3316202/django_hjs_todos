@@ -1,8 +1,6 @@
 name: Deploy to EC2
-on:
-    push:
-        branches:
-            - dev_10_distribute_2025-03-21
+on: [push]
+    
 jobs:
     build:
         name: Build

@@ -1,7 +1,7 @@
 # django_rest_framework_15th 라는 upstream 서버 지정 (nginx 입장에서는 django가 upstream 서버)
 # web 컨테이너의 8000포트에 연결 (web은 아까 만든 컨테이너1에 해당)
 upstream django_hjs_todos { 
-  server web:8080; 
+  server web:8888; 
 }
 
 # nginx 서버 정의

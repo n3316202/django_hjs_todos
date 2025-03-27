@@ -25,15 +25,17 @@ FROM python:3.12.0-alpine
 RUN mkdir -p /home/app
 
 # create the app user
+# https://jettstream.tistory.com/616 -S 시스템 사용자로 계정생성 
 RUN addgroup -S app && adduser -S app -G app
 
 # create the appropriate directories
 ENV HOME=/home/app
 ENV APP_HOME=/home/app/web
-RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME 
 RUN mkdir $APP_HOME/static
 RUN mkdir $APP_HOME/media
-WORKDIR $APP_HOME
+#이후 모든 명령어 실행의 기본 디렉토리를 /home/app/web으로 설정.
+WORKDIR $APP_HOME 
 
 # install dependencies
 #libpq: PostgreSQL과 호환되도록 패키지 추가 (일반적으로 Django에서 사용)

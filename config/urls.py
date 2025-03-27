@@ -7,10 +7,11 @@ from config import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("todos.urls")),  # dev_1
-]   
+]
 
 # dev_3
-if settings.DEBUG:
-    urlpatterns += [
-        path("__debug__/", include("debug_toolbar.urls")),
-    ]
+# dev_10 배포를 위해 삭제
+# if settings.DEBUG:
+#    urlpatterns += [
+#        path("__debug__/", include("debug_toolbar.urls")),
+#    ]

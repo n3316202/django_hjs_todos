@@ -2,7 +2,7 @@
 name: using-python-version
 on:
     push:
-        branches: [dev_2_distribute_simple_example_2025-03-22]
+        branches: [dev_10_distribute_2025-03-21]
 
 jobs:
     build:

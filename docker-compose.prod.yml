@@ -5,7 +5,7 @@ services: # 컨테이너 설정
         build:
             context: ./
             dockerfile: Dockerfile.prod # 배포용인 Dockerfile.prod
-        command: gunicorn config.wsgi:application --bind 0.0.0.0:8080 # 배포에서는 gunicorn으로 웹서버(nginx) -> 장고 연결
+        command: gunicorn config.wsgi:application --bind 0.0.0.0:8888 # 배포에서는 gunicorn으로 웹서버(nginx) -> 장고 연결
         environment:
             DJANGO_SETTINGS_MODULE: config.settings.prod
         env_file:
@@ -14,7 +14,7 @@ services: # 컨테이너 설정
             - static:/home/app/web/static
             - media:/home/app/web/media
         expose:
-            - 8080
+            - 8888
         entrypoint:
             - sh
             - config/docker/entrypoint.prod.sh
